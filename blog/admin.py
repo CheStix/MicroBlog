@@ -1,3 +1,12 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Post
+
+
+class PostAdmin(admin.ModelAdmin):
+    """Сообщения"""
+    list_display = ('id', 'user', 'text', 'date')
+    list_filter = ('user', 'date')
+
+
+admin.site.register(Post, PostAdmin)
