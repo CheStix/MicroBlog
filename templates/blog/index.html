@@ -2,15 +2,28 @@
 
 {% block content %}
 
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Отправить</button>
-    </form>
+    {% if user.is_active %}
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Отправить</button>
+        </form>
+        <hr>
+    {% endif %}
 
     {% for post in posts %}
         <p>{{ post.text }}</p>
         <b>{{ post.date }}</b>|{{ post.user }}
+
+        {% if user.is_active %}
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="number" hidden name="id" value="{{ post.id }}">
+                <button type="submit">Комментировать</button>
+            </form>
+        {% endif %}
+        <hr>
     {% endfor %}
 
 {% endblock %}
