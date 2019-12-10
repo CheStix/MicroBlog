@@ -1,0 +1,9 @@
+.form-twit {
+    padding: 15px;
+    margin: 15px 0px 25px 0px;
+    box-shadow: 1px 1px 16px 1px #cecece;
+}
+
+.comment {
+    display: none;
+}

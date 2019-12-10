@@ -8,6 +8,7 @@ class Post(models.Model):
     text = models.TextField('Сообщение', max_length=500)
     date = models.DateTimeField('Дата', auto_now_add=True)
     twit = models.ForeignKey('self', verbose_name='Твит', on_delete=models.SET_NULL, blank=True, null=True)
+    like = models.IntegerField('Понравилось', default=0)
 
     def __str__(self):
         return f'{self.id} - {self.user}'

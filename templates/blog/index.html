@@ -2,28 +2,51 @@
 
 {% block content %}
 
-    {% if user.is_active %}
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Отправить</button>
-        </form>
-        <hr>
-    {% endif %}
+    <div class="row form-twit">
+        {% if user.is_active %}
+            <div class="col-12">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success btn-sm">Отправить</button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
 
     {% for post in posts %}
-        <p>{{ post.text }}</p>
-        <b>{{ post.date }}</b>|{{ post.user }}
+
+        <div class="row">
+            <div class="col-12">{{ post.text }}</div>
+            <div class="col-12"><b>{{ post.date }}</b>|{{ post.user }}</div>
+            <div class="col-12">{{ post.like }} -
+                <i class="far fa-thumbs-up" aria-hidden="true" onclick="like({{ post.id }})"></i>
+            </div>
+            <hr>
+        </div>
+        <div class="row">
+            Комментарии
+            <br>
+        </div>
 
         {% if user.is_active %}
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="number" hidden name="id" value="{{ post.id }}">
-                <button type="submit">Комментировать</button>
-            </form>
+            <div class="row">
+                <div class="col-12">
+                    <i class="far fa-comment-alt" onclick="openForm({{ post.id }})"></i>
+                    <i class="far fa-times-circle" onclick="closeForm({{ post.id }})"></i>
+                </div>
+                <div class="col-12 comment" id="{{ post.id }}">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="number" hidden name="id" value="{{ post.id }}">
+                        <button type="submit" class="btn btn-success btn-sm">Комментировать</button>
+                    </form>
+                </div>
+            </div>
         {% endif %}
-        <hr>
+
+        <br>
     {% endfor %}
 
 {% endblock %}
