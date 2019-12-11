@@ -9,6 +9,7 @@ class Post(models.Model):
     date = models.DateTimeField('Дата', auto_now_add=True)
     twit = models.ForeignKey('self', verbose_name='Твит', on_delete=models.SET_NULL, blank=True, null=True)
     like = models.IntegerField('Понравилось', default=0)
+    liked_users = models.ManyToManyField(User, related_name='user_liked', verbose_name='Кому понравилось')
 
     def __str__(self):
         return f'{self.id} - {self.user}'
