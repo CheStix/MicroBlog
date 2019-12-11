@@ -24,10 +24,12 @@
 
 </div>
 
+{% csrf_token %}
 
 {% block script %}
 
     <script type="text/javascript" src="{% static 'MDB/js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/js.cookie.js' %}"></script>
     <script type="text/javascript" src="{% static 'MDB/js/popper.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'MDB/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'MDB/js/mdb.min.js' %}"></script>

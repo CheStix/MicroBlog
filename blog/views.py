@@ -28,7 +28,7 @@ class PostView(View):
 
 
 class Like(View):
-    """Ставим дайк"""
+    """Ставим лайк"""
     def post(self, request):
         pk = request.POST.get('pk')
         post = Post.objects.get(id=pk)
