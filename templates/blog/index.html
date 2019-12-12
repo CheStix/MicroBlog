@@ -2,8 +2,8 @@
 
 {% block content %}
 
-    <div class="row form-twit">
-        {% if user.is_active %}
+    {% if user.is_active %}
+        <div class="row form-twit">
             <div class="col-12">
                 <form action="" method="post">
                     {% csrf_token %}
@@ -11,8 +11,8 @@
                     <button type="submit" class="btn btn-success btn-sm">Отправить</button>
                 </form>
             </div>
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
 
     {% for post in posts %}
 
