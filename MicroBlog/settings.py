@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my apps
     'blog.apps.BlogConfig',
+    'profiles.apps.ProfilesConfig',
     # 3rd party apps
     'allauth',
     'allauth.account',
