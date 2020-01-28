@@ -1,11 +1,10 @@
 <nav class="navbar navbar-dark bg-primary">
     <span class="navbar-brand mb-0 h1">MicroBlog</span>
-     <ul class="navbar-nav">
+    <ul class="navbar-nav">
         {% if user.is_active %}
             <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">Выход</a></li>
         {% else %}
-        <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}">Вход</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}">Вход</a></li>
         {% endif %}
     </ul>
-    
 </nav>
