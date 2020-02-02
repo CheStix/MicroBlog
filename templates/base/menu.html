@@ -1,16 +1,36 @@
-<nav class="navbar navbar-dark bg-primary">
-    <span class="navbar-brand mb-0 h1">MicroBlog</span>
-    <ul class="navbar-nav">
-        {% if user.is_active %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_logout' %}">Выход</a>
-            </li>
-        {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Вход</a>
-            </li>
-        {% endif %}
-    </ul>
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand mb-0 h1" href="{% url 'posts_view_url' %}">
+        <img src="{% static 'img/icon_dragonfly.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+        MicroBlog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+        <ul class="navbar-nav ">
+            {% if user.is_active %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        {% if  user.profile.nickname %}
+                            {{ user.profile.nickname }}
+                        {% else %}
+                            {{ user.username }}
+                        {% endif %}</a>
+                </li>
+                <li class="nav-item">
+                    <img class="nav-link rounded-circle" style="height: 50px; width: 50px" src="{{ user.profile.get_avatar_url }}" alt="">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'account_logout' %}">Выход</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Вход</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
 </nav>
 
 {#login Modal#}
