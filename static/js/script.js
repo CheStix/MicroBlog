@@ -29,3 +29,17 @@ let like = function (id) {
         }
     })
 };
+
+//processing the authorization form using ajax request
+$('.need_auth').submit(function (e) {
+    e.preventDefault();
+    var url = $(this).attr('action');
+    var data = $(this).serialize();
+    $.post(
+        url,
+        data,
+        function (response) {
+            window.location = response.location;
+        },
+    );
+})

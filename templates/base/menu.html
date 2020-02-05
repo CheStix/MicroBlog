@@ -11,7 +11,7 @@
         <ul class="navbar-nav ">
             {% if user.is_active %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{% url 'profile_view_url' %}">
                         {% if  user.profile.nickname %}
                             {{ user.profile.nickname }}
                         {% else %}
@@ -19,7 +19,7 @@
                         {% endif %}</a>
                 </li>
                 <li class="nav-item">
-                    <img class="nav-link rounded-circle" style="height: 50px; width: 50px" src="{{ user.profile.get_avatar_url }}" alt="">
+                    <img class="avatar" src="{{ user.profile.get_avatar_url }}" alt="">
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'account_logout' %}">Выход</a>
