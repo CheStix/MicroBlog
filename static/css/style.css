@@ -1,3 +1,11 @@
+.menu {
+    margin: 0 0 15px 0;
+}
+.twit {
+    margin: 10px 0 15px 0;
+    box-shadow: 1px 7px 11px 0px #cecece;
+}
+
 .form-twit {
     padding: 15px;
     margin: 15px 0px 25px 0px;

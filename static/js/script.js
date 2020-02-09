@@ -25,7 +25,7 @@ let like = function (id) {
             pk:id,
         },
         success: (response) => {
-
+            window.location = response
         }
     })
 };

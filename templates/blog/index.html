@@ -16,9 +16,9 @@
 
     {% for post in posts %}
 
-        <div class="row">
-            <div class="col-12">{{ post.text }}</div>
-            <div class="col-12"><b>{{ post.date }}</b>|{{ post.user }}</div>
+        <div class="row twit">
+            <div class="col-12"><p>{{ post.text }}</p></div>
+            <div class="col-12"><b><small>{{ post.date }} | {{ post.user }}</small></b></div>
             <div class="col-12">{{ post.like }} -
                 {% if user.is_authenticated %}
                 <i class="far fa-thumbs-up" aria-hidden="true" onclick="like({{ post.id }})"></i>
@@ -32,8 +32,10 @@
         </div>
 
         <div class="row">
-            Комментарии
-            <br>
+            <div class="col-12">
+                Комментарии
+                <br>
+            </div>
         </div>
 
         {% if user.is_active %}
