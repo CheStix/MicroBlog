@@ -29,6 +29,7 @@ class Profile (models.Model):
     user = models.OneToOneField(User, verbose_name='Пользователь', on_delete=models.CASCADE)
     nickname = models.CharField('Прозвище', max_length=100, null=True, blank=True)
     avatar = models.ImageField('Аватар', upload_to=get_avatar_upload_path, null=True, blank=True)
+    follow = models.ManyToManyField(User, verbose_name='Подписчики', related_name='follow_user')
 
     class Meta:
         verbose_name = 'Профиль'

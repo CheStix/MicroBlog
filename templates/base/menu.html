@@ -22,6 +22,9 @@
                     <img class="avatar" src="{{ user.profile.get_avatar_url }}" alt="">
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user_posts_url' %}">Мои записи</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'account_logout' %}">Выход</a>
                 </li>
             {% else %}

@@ -12,7 +12,9 @@
         </p>
         <hr>
         <p>Your avatar:</p>
-        <img  class="rounded-circle" src="{{ profile.get_avatar_url }}" alt="">
+        <img  class="avatar" src="{{ profile.get_avatar_url }}" alt="">
+        <p>Followers:</p>
+        {{ profile.follow.count }}
     </div>
     <div class="col-md-4">
         <a href="{% url 'profile_edit_url' %}">

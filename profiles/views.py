@@ -1,9 +1,11 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import Http404
+from django.contrib.auth.models import User
+from django.http import Http404, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, UpdateView, View
+
 
 from profiles.forms import ProfileForm
 from .models import Profile
@@ -33,4 +35,14 @@ class ProfileEditView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         messages.success(self.request, 'Profile has been updated!!!')
         return super().form_valid(form)
+
+
+class AddFollow(View):
+    """Подпись на пользователя"""
+    def post(self, request):
+        pk = request.POST.get('pk')
+        user = Profile.objects.get(id=pk)
+        user.follow.add(User.objects.get(id=request.user.id))
+        user.save()
+        return HttpResponse(status=200)
 

@@ -18,7 +18,10 @@
 
         <div class="row twit">
             <div class="col-12"><p>{{ post.text }}</p></div>
-            <div class="col-12"><b><small>{{ post.date }} | {{ post.user }}</small></b></div>
+            <div class="col-12"><b>
+                <small>{{ post.date }} | {{ post.user }}</small>
+                <button class="btn btn-sm" onclick="follow({{ post.user.id }})">Follow</button>
+            </b></div>
             <div class="col-12">{{ post.like }} -
                 {% if user.is_authenticated %}
                 <i class="far fa-thumbs-up" aria-hidden="true" onclick="like({{ post.id }})"></i>

@@ -1,11 +1,18 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.views.generic import View
+from django.views.generic import View, ListView
 from django.contrib.auth.models import User
 
 from .models import Post
 from .forms import PostForm
+
+
+class AllTwit(ListView):
+    """Выыод всех сообщений"""
+    model = Post
+    context_object_name = 'posts'
+    template_name = 'blog/index.html'
 
 
 class PostView(View):
@@ -27,7 +34,7 @@ class PostView(View):
             if post_id:
                 form.twit = Post.objects.get(id=post_id)
             form.save()
-            return redirect('posts_view_url')
+            return redirect('user_posts_url')
         else:
             return HttpResponse('error')
 
