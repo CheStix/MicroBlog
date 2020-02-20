@@ -38,13 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.sites',
     'django.contrib.staticfiles',
-    # my apps
-    'blog.apps.BlogConfig',
-    'profiles.apps.ProfilesConfig',
+
     # 3rd party apps
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'bootstrap4',
+
+    # my apps
+    'blog.apps.BlogConfig',
+    'profiles.apps.ProfilesConfig',
 ]
 
 MIDDLEWARE = [

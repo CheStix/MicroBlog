@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 
 {% block content %}
 
     {% if user.is_active %}
         <div class="row form-twit">
             <div class="col-12">
-                <form action="" method="post">
+                <form action="{% url 'user_posts_url' %}" method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button type="submit" class="btn btn-success btn-sm">Отправить</button>
@@ -60,5 +61,6 @@
 
         <br>
     {% endfor %}
+    {% bootstrap_pagination page_obj %}
 
 {% endblock %}

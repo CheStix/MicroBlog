@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import View, ListView
@@ -13,6 +14,12 @@ class AllTwit(ListView):
     model = Post
     context_object_name = 'posts'
     template_name = 'blog/index.html'
+    paginate_by = 5
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = PostForm()
+        return context
 
 
 class PostView(View):
@@ -23,7 +30,10 @@ class PostView(View):
         else:
             posts = Post.objects.filter(twit__isnull=True)
         form = PostForm()
-        return render(request, 'blog/index.html', {'posts': posts, 'form': form})
+        paginator = Paginator(posts, 5)
+        page = request.GET.get('page')
+        page_obj = paginator.get_page(page)
+        return render(request, 'blog/index.html', {'posts': posts, 'form': form, 'page_obj': page_obj})
 
     def post(self, request):
         form = PostForm(request.POST)
